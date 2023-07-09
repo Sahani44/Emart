@@ -1,6 +1,7 @@
 import 'package:emart/common/widgets/custom_button.dart';
 import 'package:emart/common/widgets/custom_textfield.dart';
 import 'package:emart/constants/global_variables.dart';
+import 'package:emart/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 enum Auth {
@@ -20,7 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-
+  AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -31,6 +32,22 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController.dispose();
     _nameController.dispose();
     super.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text);
+  }
+
+  void signInUser() {
+    authService.signInUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
@@ -101,33 +118,36 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         CustomButton(
                           text: 'Sign Up',
-                          onTap: () {},
+                          onTap: () {
+                            if (_signUpFormKey.currentState!.validate()) {
+                              signUpUser();
+                            }
+                          },
                         )
                       ],
                     ),
                   ),
                 ),
               ListTile(
-                tileColor: _auth == Auth.signin
+                  tileColor: _auth == Auth.signin
                       ? GlobalVariables.backgroundColor
                       : GlobalVariables.greyBackgroundCOlor,
-                title: const Text(
-                  'Sign-In',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                  title: const Text(
+                    'Sign-In',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                leading: Radio(
-                  activeColor: GlobalVariables.secondaryColor,
-                  value: Auth.signin,
-                  groupValue: _auth,
-                  onChanged: (value) {
-                    setState(() {
-                      _auth = value!;
-                    });
-                  },
-                )
-              ),
+                  leading: Radio(
+                    activeColor: GlobalVariables.secondaryColor,
+                    value: Auth.signin,
+                    groupValue: _auth,
+                    onChanged: (value) {
+                      setState(() {
+                        _auth = value!;
+                      });
+                    },
+                  )),
               if (_auth == Auth.signin)
                 Container(
                   padding: const EdgeInsets.all(8.0),
@@ -151,8 +171,12 @@ class _AuthScreenState extends State<AuthScreen> {
                           height: 10,
                         ),
                         CustomButton(
-                          text: 'Sign Up',
-                          onTap: () {},
+                          text: 'Sign In',
+                          onTap: () {
+                            if (_signInFormKey.currentState!.validate()) {
+                              signInUser();
+                            }
+                          },
                         )
                       ],
                     ),
