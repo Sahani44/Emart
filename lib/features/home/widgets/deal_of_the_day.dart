@@ -14,7 +14,7 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
       children: [
         Container(
           alignment: Alignment.topLeft,
-          padding: EdgeInsets.only(left: 10, top: 15),
+          padding: const EdgeInsets.only(left: 10, top: 15),
           child: const Text(
             'Deal Of The Day',
             style: TextStyle(fontSize: 20),
