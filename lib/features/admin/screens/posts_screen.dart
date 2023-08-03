@@ -34,7 +34,7 @@ class _PostsScreenState extends State<PostsScreen> {
     adminServices.deleteProduct(
       context: context, 
       product: product, 
-      OnSuccess: () {
+      onSuccess: () {
         products!.removeAt(index);
         setState(() {});
       }

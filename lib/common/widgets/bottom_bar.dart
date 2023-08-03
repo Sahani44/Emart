@@ -2,8 +2,11 @@
 
 import 'package:badges/badges.dart';
 import 'package:emart/constants/global_variables.dart';
+import 'package:emart/features/cart/screens/cart_screen.dart';
 import 'package:emart/features/home/screens/home_screen.dart';
+import 'package:emart/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../features/account/screens/account_screen.dart';
 
@@ -22,7 +25,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Center(child: Text('Cart Page'),),
+    const CartScreen(),
     const AccountScreen(),
   ];
 
@@ -35,6 +38,9 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
+
     return Scaffold(
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
@@ -77,13 +83,13 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              child: const Badge(
-                badgeStyle: BadgeStyle(
+              child: Badge(
+                badgeStyle: const BadgeStyle(
                   elevation: 0,
                   badgeColor: Colors.white,
                 ),
-                badgeContent: Text('2'),
-                child: Icon(Icons.shopping_cart_outlined)
+                badgeContent: Text(userCartLen.toString()),
+                child: const Icon(Icons.shopping_cart_outlined)
               ),
             ),
             label: '',
