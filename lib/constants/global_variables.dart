@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'https://a6d6-2405-201-4014-514b-59e8-e407-b351-d867.ngrok.io';
+String uri = 'https://a4ec-2409-40d0-102b-2f77-e13c-4da6-2f6f-f85a.ngrok.io';
 class GlobalVariables {
   // COLORS
   static const appBarGradient = LinearGradient(

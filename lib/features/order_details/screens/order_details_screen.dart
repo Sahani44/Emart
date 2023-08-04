@@ -226,9 +226,9 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                   ),
                 ),
                 child: Stepper(
-                  currentStep: currentStep,
+                  currentStep: currentStep < 3 ? currentStep : 3,
                   controlsBuilder: (context, details) {
-                    if (user.type == 'admin') {
+                    if (user.type == 'admin' && currentStep <3) {
                       return CustomButton(
                         text: 'Done',
                         onTap: () => changeOrderStatus(details.currentStep),
@@ -240,7 +240,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     Step(
                       title: const Text('Pending'),
                       content: const Text(
-                        'Your order is yet to be delivered',
+                        'Order is yet to be delivered',
                       ),
                       isActive: currentStep > 0,
                       state: currentStep > 0
@@ -250,7 +250,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     Step(
                       title: const Text('Completed'),
                       content: const Text(
-                        'Your order has been delivered, you are yet to sign.',
+                        'Order has been delivered, you are yet to sign.',
                       ),
                       isActive: currentStep > 1,
                       state: currentStep > 1
@@ -260,7 +260,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     Step(
                       title: const Text('Received'),
                       content: const Text(
-                        'Your order has been delivered and signed by you.',
+                        'Order has been delivered and signed by you.',
                       ),
                       isActive: currentStep > 2,
                       state: currentStep > 2
@@ -270,7 +270,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     Step(
                       title: const Text('Delivered'),
                       content: const Text(
-                        'Your order has been delivered and signed by you!',
+                        'Order has been delivered and signed by you!',
                       ),
                       isActive: currentStep >= 3,
                       state: currentStep >= 3

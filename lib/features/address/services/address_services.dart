@@ -73,6 +73,7 @@ class AddressServices {
             cart: [],
           );
           userProvider.setUserFromModel(user);
+          Navigator.pop(context);
         },
       );
     } catch (e) {

@@ -5,6 +5,9 @@ import 'package:emart/features/order_details/screens/order_details_screen.dart';
 import 'package:emart/models/order.dart';
 import 'package:flutter/material.dart';
 
+import '../../account/services/account_services.dart';
+import '../../account/widgets/account_button.dart';
+
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
 
@@ -29,30 +32,49 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return orders == null
+    return Column(
+      children: [
+        const SizedBox(height: 10,),
+        Row(
+          children: [
+            AccountButton(
+              text: 'Log Out', 
+              onTap: () => AccountServices().logOut(context),
+            ),
+          ],
+        ),
+        orders == null
         ? const Loader()
-        : GridView.builder(
-            itemCount: orders!.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              final orderData = orders![index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    OrderDetailScreen.routeName,
-                    arguments: orderData,
-                  );
-                },
-                child: SizedBox(
-                  height: 140,
-                  child: SingleProduct(
-                    image: orderData.products[0].images[0],
+        : Container(
+          height: 617,
+            padding: const EdgeInsets.only(
+              left: 10,
+              top: 20,
+              right: 0,
+            ),
+          child: ListView.builder(
+              itemCount: orders!.length,
+              itemBuilder: (context, index) {
+                final orderData = orders![index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      OrderDetailScreen.routeName,
+                      arguments: orderData,
+                    );
+                  },
+                  child: SizedBox(
+                    height: 140,
+                    child: SingleProduct(
+                      image: orderData.products[0].images[0],
+                    ),
                   ),
-                ),
-              );
-            },
-          );
+                );
+              },
+            ),
+        ),
+      ],
+    );
   }
 }

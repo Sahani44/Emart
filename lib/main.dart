@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    //authService.getUserData(context: context);
+    // authService.getUserData(context: context);
   }
   @override
   Widget build(BuildContext context) {
@@ -55,11 +55,10 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? Provider.of<UserProvider>(context).user.type == 'user' 
-            ? const BottomBar() 
-            : const AdminScreen()
-          : const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty ? 
+              Provider.of<UserProvider>(context).user.type == 'user' ? const BottomBar() 
+              : const AdminScreen()
+            : const AuthScreen(),
     );
   }
 }

@@ -17,8 +17,10 @@ class _CartProductState extends State<CartProduct> {
   final ProductDetailsServices productDetailsServices = ProductDetailsServices();
   final CartServices cartServices = CartServices();
 
-  void increaseQuantity(Product product) {
-    productDetailsServices.addToCart(context: context, product: product,);
+  void increaseQuantity(Product product, quantity) {
+    if(quantity < product.quantity) {
+      productDetailsServices.addToCart(context: context, product: product,);
+    }
   }
 
   void decreaseQuantity(Product product) {
@@ -59,7 +61,7 @@ class _CartProductState extends State<CartProduct> {
                     ),
                   ),
                   Container(
-                    width: 235,
+                    width: 229,
                     padding: const EdgeInsets.only(left: 10, top: 5),
                     child: Text(
                       '\$${product.price}',
@@ -71,12 +73,12 @@ class _CartProductState extends State<CartProduct> {
                     ),
                   ),
                   Container(
-                    width: 235,
+                    width: 229,
                     padding: const EdgeInsets.only(left: 10),
                     child: const Text('Eligible for FREE Shipping'),
                   ),
                   Container(
-                    width: 235,
+                    width: 229,
                     padding: const EdgeInsets.only(left: 10, top: 5),
                     child: const Text(
                       'In Stock',
@@ -135,7 +137,7 @@ class _CartProductState extends State<CartProduct> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => increaseQuantity(product),
+                      onTap: () => increaseQuantity(product, quantity),
                       child: Container(
                         width: 35,
                         height: 32,

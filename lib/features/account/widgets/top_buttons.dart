@@ -1,3 +1,4 @@
+import 'package:emart/features/account/services/account_services.dart';
 import 'package:emart/features/account/widgets/account_button.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class _TopButtonsState extends State<TopButtons> {
           children: [
             AccountButton(
               text: 'Log Out', 
-              onTap: () {},
+              onTap: () => AccountServices().logOut(context),
             ),
             AccountButton(
               text: 'Your Wish List', 

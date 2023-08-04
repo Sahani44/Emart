@@ -1,9 +1,7 @@
 import 'package:emart/common/widgets/loader.dart';
 import 'package:emart/features/home/services/home_services.dart';
 import 'package:emart/features/product_details/screens/product_details_screen.dart';
-import 'package:emart/features/product_details/services/product_details_services.dart';
 import 'package:flutter/material.dart';
-
 import '../../../models/product.dart';
 
 class DealOfTheDay extends StatefulWidget {

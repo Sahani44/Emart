@@ -217,27 +217,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               color: Colors.black12,
               height: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: CustomButton(
-                text: 'Buy Now',
-                onTap: () {}, 
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: CustomButton(
-                text: 'Add to Cart',
-                onTap: addToCart,
-                color: const Color.fromRGBO(254, 216, 19, 1),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              color: Colors.black12,
-              height: 5,
-            ),
+            widget.product.quantity != 0 
+            ? Column(
+                children: [
+                  Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: CustomButton(
+                    text: 'Add to Cart',
+                    onTap: addToCart,
+                    color: const Color.fromRGBO(254, 216, 19, 1),
+                  ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    color: Colors.black12,
+                    height: 5,
+                  ),
+                ],
+              )
+            : const SizedBox(height: 0),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(

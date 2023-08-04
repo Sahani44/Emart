@@ -49,12 +49,12 @@ class _AddressScreenState extends State<AddressScreen> {
     cityController.dispose();
   }
 
-  void onApplePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false).user.address.isEmpty) {
-      addressServices.saveUserAddress(context: context, address: addressToBeUsed);
-    }
-    addressServices.placeOrder(context: context, address: addressToBeUsed, totalSum: double.parse(widget.totalAmount),);
-  }
+  // void onApplePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false).user.address.isEmpty) {
+  //     addressServices.saveUserAddress(context: context, address: addressToBeUsed);
+  //   }
+  //   addressServices.placeOrder(context: context, address: addressToBeUsed, totalSum: double.parse(widget.totalAmount),);
+  // }
 
   void onGooglePayResult(res) {
     if (Provider.of<UserProvider>(context, listen: false).user.address.isEmpty) {
@@ -88,6 +88,7 @@ class _AddressScreenState extends State<AddressScreen> {
       addressServices.saveUserAddress(context: context, address: addressToBeUsed);
     }
     addressServices.placeOrder(context: context, address: addressToBeUsed, totalSum: double.parse(widget.totalAmount),);
+
   }
 
   @override
@@ -167,17 +168,17 @@ class _AddressScreenState extends State<AddressScreen> {
                   ],
                 ),
               ),
-              ApplePayButton(
-                width: double.infinity,
-                style: ApplePayButtonStyle.whiteOutline,
-                type: ApplePayButtonType.buy,
-                paymentConfigurationAsset: 'applepay.json',
-                onPaymentResult: onApplePayResult,
-                paymentItems: paymentItems,
-                margin: const EdgeInsets.only(top: 15),
-                height: 50,
-                onPressed: () => payPressed(address),
-              ),
+              // ApplePayButton(
+              //   width: double.infinity,
+              //   style: ApplePayButtonStyle.whiteOutline,
+              //   type: ApplePayButtonType.buy,
+              //   paymentConfigurationAsset: 'applepay.json',
+              //   onPaymentResult: onApplePayResult,
+              //   paymentItems: paymentItems,
+              //   margin: const EdgeInsets.only(top: 15),
+              //   height: 50,
+              //   onPressed: () => payPressed(address),
+              // ),
               const SizedBox(height: 10),
               GooglePayButton(
                 onPressed: () => payPressed(address),
